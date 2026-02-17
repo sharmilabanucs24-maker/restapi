@@ -13,7 +13,7 @@ const inputHandler = (e) =>{
     setUser({...user, [name]: value });
 };
 const submitForm =(e)=>{
-    e.preventDefault();
+    //e.preventDefault();
     console.log(user)
     axios.post("http://localhost:8009/api/user",user).then((res)=>{
         console.log(res)

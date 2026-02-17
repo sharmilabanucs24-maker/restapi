@@ -15,13 +15,25 @@ function Users() {
         }
         show()
         },[])
+        const delfun=async(delid)=>{
+            await axios.delete(`http://localhost:8009/api/delete/user/${delid}`).then((res)=>{
+                console.log("successfully deleted:",res.data)
+                window.location.reload()
+            }).catch((err)=>{
+                console.log("error:",err.response.data)
+            })
+            
+            
+        }
         return(
             <div>
                 <h1>All User Details</h1>
                 <table border='2'>
+                    <tr bgcolor="pink"><th>customer name</th><th>Email</th><th>address</th><th> del operation</th></tr>
                 {allusers.map((item,index)=>
                 <tr>
-              <td> {item.name}</td> <td>{item.email} </td><td>{item.address}</td>
+              <td>{item.name}</td><td>{item.email}</td><td>{item.address}</td>
+              <td><button onClick={()=>delfun(item._id)}>❌Del</button></td>
                 </tr>
             )}
             </table>
